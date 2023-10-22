@@ -33,7 +33,7 @@
             position: absolute;
             justify-content: center;
         }
-        #Container {
+        .Container {
             width: 70%;
             height: auto;
             border: rgb(223, 223, 223) solid 3px;
@@ -105,7 +105,7 @@
     </style>
 </head>
 <body>
-    <div id="Container">
+    <div class="Container">
         <div class="Login-Title">Đăng Nhập</div>
         <div class="Email-Title">E-mail</div>
         <div class="Email-Input">
@@ -120,17 +120,28 @@
         <input type="submit" name="Login" class="Login" onclick="Login()" value="Đăng Nhập">
         <div class="No-Have-Account">Chưa Có Tài Khoản <a href="" onclick="Register()" Class="Register">Đăng Kí</a></div>
     </div>
-    <div id="Video"></div>
     <script>
-        
+        const Music_List = [
+            "https://thanhphuc.click/music/nhuanhdatungthayem.mp3",
+            "https://thanhphuc.click/music/thembaonhieulau.mp3",
+            "https://thanhphuc.click/music/hanhphucdoemkhongco.mp3",
+            "https://thanhphuc.click/music/cothehaykhong.mp3",
+        ];
+        var index = 0;
+        const audio = new Audio(Music_List[index]);
+        document.addEventListener("click", function(){
+            audio.play()
+        })
+        audio.addEventListener("ended", function() {
+            index = (index + 1) % Music_List.length;
+            audio.src = Music_List[index];
+            audio.play();
+        });
+            
         function Register(){
-            alert("Con Cẹt Đăng Kí Cái Lon")
+            
         }
         function Login(){
-            document.getElementById("Container").outerHTML = ""
-            var Video = document.getElementById("Video")
-            Video.style = "width:100%; height:100%"
-            Video.innerHTML = "<iframe width='100%' height='100%' src='https://www.youtube.com/embed/KOMIXDWFJZc?si=GS8-9w3AyxW1QLID' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>"
         }
     </script>
 </body>
